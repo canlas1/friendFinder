@@ -24,26 +24,11 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
-    for(var i = 0; i< [friends].length -1; i++)
-      console.log(friends[i].name)
+   console.log(res);
 
-    //push this from the form
-
-  //   var userResultsArray = [];
-
-  //   if (friendsData.length < 5) {
-  //     friendsData.push(req.body);
-  //     res.JSON({
-  //       message: "successfully added to friends"
-  //     });
-  //   };
-
-  // });
-
-  // app.post("/api/clear", function() {
-  //   //empty out the array of data
-  //   friendsArray = [];
 
     console.log(friendsData);
   });
+
+  
 };

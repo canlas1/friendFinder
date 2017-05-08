@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express(); 
 
-app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 var PORT = process.env.PORT || 8080;
 
 // BodyParser makes it easy for our server to interpret data sent to it.

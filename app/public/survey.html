@@ -1,13 +1,17 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>FriendFinder</title>
+
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="//code.jquery.com/jquery.js"></script>
-    <script src=../../../scripts/surveyOnclick.js></script>
+   <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <title>Friend Finder</title>
+
 </head>
 
 <body>
@@ -112,13 +116,9 @@
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
-
         <br>
         <br>
-       
     </div>
-
-
     <a class="btn btn-primary" id="submit" data-toggle="modal" href='#modal-id'>Trigger modal</a>
     <div class="modal fade" id="modal-id">
         <div class="modal-dialog">
@@ -128,7 +128,6 @@
                     <h4 class="modal-title">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -138,10 +137,58 @@
         </div>
     </div>
 </body>
-
-
-
 <script>
-    
+var name = $("#name").val();
+var photo = $("#photo").val();
+var q1 = $("#q1").val();
+var q2 = $("#q2").val();
+var q3 = $("#q3").val();
+var q4 = $("#q4").val();
+var q5 = $("#q5").val();
+var q6 = $("#q6").val();
+var q7 = $("#q7").val();
+var q8 = $("#q8").val();
+var q9 = $("#q9").val();
+var q10 = $("#q10").val();
+
+console.log(name);
+console.log(photo);
+console.log(q1);
+console.log(q2);
+console.log(q3);
+console.log(q4);
+console.log(q5);
+console.log(q6);
+console.log(q7);
+console.log(q8);
+console.log(q9);
+console.log(q10);
+    var scores = [
+        q1, q2, q3, q4, q5, q6, q7, q8, q9, q10
+    ];
+    var newLoser = {
+        name: name,
+        picture: photo,
+        scores: scores
+    };
+        console.log(newLoser);
+        var currentURL = window.location.origin;
+        $.post(currentURL + "/api/friends", newLoser, function(data) {
+            var jumbotron = $("<div>");
+            jumbotron.attr("class", "jumbotron text-center");
+            var heading = $("<h1>");
+            heading.text(data.name);
+            var picture = $("<img>");
+            picture.attr("src", data.picture);
+            var text = $("<p>");
+            text.text("This is your most compatible match.");
+            jumbotron.append(heading);
+            jumbotron.append(picture);
+            jumbotron.append(text);
+        });
+
+
 </script>
+</script>
+
 </html>
