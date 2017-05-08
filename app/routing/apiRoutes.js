@@ -4,7 +4,7 @@
 // These data sources hold arrays of information on friends
 // ===============================================================================
 
-var friendsData = require("../data/friends");
+var friendsData = require("../data/friends.js");
 
 module.exports = function(app) {
   //API GET Requests
@@ -24,21 +24,25 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
+    for(var i = 0; i< [friends].length -1; i++)
+      console.log(friends[i].name)
+
     //push this from the form
-    var userResultsArray = [];
 
-    if (friendsData.length < 5) {
-      friendsData.push(req.body);
-      res.JSON({
-        message: "successfully added to friends"
-      });
-    };
+  //   var userResultsArray = [];
 
-  });
+  //   if (friendsData.length < 5) {
+  //     friendsData.push(req.body);
+  //     res.JSON({
+  //       message: "successfully added to friends"
+  //     });
+  //   };
 
-  app.post("/api/clear", function() {
-    //empty out the array of data
-    friendsArray = [];
+  // });
+
+  // app.post("/api/clear", function() {
+  //   //empty out the array of data
+  //   friendsArray = [];
 
     console.log(friendsData);
   });
