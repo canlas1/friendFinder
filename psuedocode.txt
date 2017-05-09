@@ -1,0 +1,38 @@
+1.  Create the folder friend finder (COMPLETE)
+	-Organize with directories (COMPLETE)
+
+Instructions:
+
+1.   Survery should have 10 question of our choosing with a scale of 1 to 5 (I TOOK EXACT QUESTIONS FROM AHMED) (COMPLETE)
+
+2.  create server.js npm install body-parser, express, init, require path (COMPLETE)
+
+3.  htmlRoutes.js includes 2 routes:  
+	-Get to survey page
+	-USE that leads back to home with a "/"
+	(COMPLETE)
+
+4. ******
+apiRoutes.js should contain 2 post routes
+	GET route with the URL '/api/friends' (COMPLETE)
+	NOTE you have to use to display a res.JSON
+	-We will use a hard coded Array of 10 Objects within that Array we have another array of 10 answered question/scores (1-5).  
+		for loop the length of friends Array and print based on the ID. 
+
+5.  friends.js is saved as a (COMPLETE)
+
+
+6.  varience calculations the differences to calculate the `totalDifference`.
+     * Example: 
+       * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
+       * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
+       * Total Difference: **2 + 1 + 2 =** **_5_**
+   * Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both `5-3` and `3-5` as `2`, and so on. 
+   * The closest match will be the user with the least amount of difference.
+
+7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.  (THIS IS COMPLETED WITH BS3)
+* The modal should display both the name and picture of the closest match. 
+
+8.  additioanls js put them with the survey for onclick function to append dyamically to the well
+
+

@@ -3,10 +3,8 @@
 var express = require('express');
 // var favicon = require('express-favicon');
 var bodyParser = require('body-parser');
-var path = require('path');
 var app = express(); 
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
 var PORT = process.env.PORT || 8080;
 
 // BodyParser makes it easy for our server to interpret data sent to it.
@@ -18,8 +16,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 
 // ROUTER
-require('./app/routing/apiRoutes.js')(app);
-require('./app/routing/htmlRoutes.js')(app);
+require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
 
 // LISTENER
 app.listen(PORT, function() {
