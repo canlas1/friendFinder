@@ -25,12 +25,12 @@ module.exports = function(app) {
     // ---------------------------------------------------------------------------
 
     app.post("/api/friends", function(req, res) {
-        if (friends.length < 10) {
-            friends.push(req.body);
-            res.json({
-                message: "added successfully to tables"
-            })
-        }
+        // if (friends.length < 10) {
+        //     friends.push(req.body);
+        //     res.json({
+        //         message: "added successfully to tables"
+        //     })
+        // }
 
         //create a bestMatch Object
         var bestMatch = {
@@ -71,19 +71,27 @@ module.exports = function(app) {
                     bestMatch.name = friends[i].name;
                     bestMatch.photo = friends[i].photo;
                     bestMatch.variance = totalDifference;
+
                 }
 
 
             }
+          res.json(bestMatch);
         }
 
-
+    // function scoreParser(array) {
+    //     for (var i = 0; i < array.length; i++) {
+    //         array[i] = parseInt(array[i]);
+    //     }
+    // }
+    // scoreParser();
         console.log("=======================")
 
         friends.push(userData);
         console.log("=======================")
 
-        res.json(bestMatch);
+        
+        console.log(bestMatch);
     });
 };
 // console.log(friendsData);

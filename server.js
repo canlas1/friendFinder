@@ -1,7 +1,6 @@
 // DEPENDENCIES
 
 var express = require('express');
-// var favicon = require('express-favicon');
 var bodyParser = require('body-parser');
 var app = express(); 
 

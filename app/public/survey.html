@@ -115,6 +115,7 @@
         <br>
         <br>
     </div>
+    
     <a class="btn btn-primary" id="submit" data-toggle="modal" href='#modal-id'>Trigger modal</a>
     <div class="modal fade" id="resultsModal">
         <div class="modal-dialog">
@@ -159,6 +160,7 @@ $(submit).on("click", function() {
         };
 
     $.post(currentURL + "/api/friends", newUserData, function(data) {
+        console.log("FJDKLADFJSLDJF", data)
         // Grab the result from the AJAX post so that the best match's name and photo are displayed.
         $("#matchName").text(data.name);
         $('#matchImg').attr("src", data.photo);
