@@ -116,18 +116,17 @@
         <br>
     </div>
     <a class="btn btn-primary" id="submit" data-toggle="modal" href='#modal-id'>Trigger modal</a>
-    <div class="modal fade" id="modal-id">
+    <div class="modal fade" id="resultsModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modal title</h4>
+                    <h4 class="modal-title">Best Match</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id = matchImg>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="modal-footer" id = matchName>
                 </div>
             </div>
         </div>
@@ -138,74 +137,86 @@ var submit = $("#submit")[0];
 console.log(submit);
 
 $(submit).on("click", function() {
-var name = $("#name").val();
-var photo = $("#photo").val();
-var q1 = $("#q1").val();
-var q2 = $("#q2").val();
-var q3 = $("#q3").val();
-var q4 = $("#q4").val();
-var q5 = $("#q5").val();
-var q6 = $("#q6").val();
-var q7 = $("#q7").val();
-var q8 = $("#q8").val();
-var q9 = $("#q9").val();
-var q10 = $("#q10").val();
+    var name = $("#name").val();
+    var photo = $("#photo").val();
+    var q1 = $("#q1").val();
+    var q2 = $("#q2").val();
+    var q3 = $("#q3").val();
+    var q4 = $("#q4").val();
+    var q5 = $("#q5").val();
+    var q6 = $("#q6").val();
+    var q7 = $("#q7").val();
+    var q8 = $("#q8").val();
+    var q9 = $("#q9").val();
+    var q10 = $("#q10").val();
+    var scores = [
+        q1, q2, q3, q4, q5, q6, q7, q8, q9, q10
+    ];
+    var newUserData = {
+            name: name,
+            photo: photo,
+            scores: scores
+        };
 
-// console.log(name);
-// console.log(photo);
-// console.log(q1);
-// console.log(q2);
-// console.log(q3);
-// console.log(q4);
-// console.log(q5);
-// console.log(q6);
-// console.log(q7);
-// console.log(q8);
-// console.log(q9);
-// console.log(q10);
-var scores = [
-    q1, q2, q3, q4, q5, q6, q7, q8, q9, q10
-];
+    $.post(currentURL + "/api/friends", newUserData, function(data) {
+        // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+        $("#matchName").text(data.name);
+        $('#matchImg').attr("src", data.photo);
+        // Show the modal with the best match 
+        $("#resultsModal").modal('toggle');
+    });
 
-function scoreParser(array) {
-    for (var i = 0; i < array.length; i++) {
-        array[i] = parseInt(array[i]);
+    // console.log(name);
+    // console.log(photo);
+    // console.log(q1);
+    // console.log(q2);
+    // console.log(q3);
+    // console.log(q4);
+    // console.log(q5);
+    // console.log(q6);
+    // console.log(q7);
+    // console.log(q8);
+    // console.log(q9);
+    // console.log(q10);
+
+
+    function scoreParser(array) {
+        for (var i = 0; i < array.length; i++) {
+            array[i] = parseInt(array[i]);
+        }
     }
-}
 
-scoreParser(scores);
+    scoreParser(scores);
 
-var newLoser = {
-    name: name,
-    photo: photo,
-    scores: scores
-};
-console.log(newLoser);
-var currentURL = window.location.origin;
-$.post("/api/friends", newLoser, function(data) {
+    var newLoser = {
+        name: name,
+        photo: photo,
+        scores: scores
+    };
+    console.log(newLoser);
+    var currentURL = window.location.origin;
+    $.post("/api/friends", newLoser, function(data) {
 
-    $("#match-name").text(data.name);
-    $("#match-img").attr("src", data.photo);
+        $("#match-name").text(data.name);
+        $("#match-img").attr("src", data.photo);
 
-    // Show the modal with the best match
-    $("#results-modal").modal("toggle");
-console.log(data);
+        // Show the modal with the best match
+        $("#results-modal").modal("toggle");
+        console.log(data);
+    });
+
+    // var jumbotron = $("<div>");
+    //  jumbotron.attr("class", "jumbotron text-center");
+    //  var heading = $("<h1>");
+    //  heading.text(data.name);
+    //  var picture = $("<img>");
+    //  picture.attr("src", data.picture);
+    //  var text = $("<p>");
+    //  text.text("This is your most compatible match.");
+    //  jumbotron.append(heading);
+    //  jumbotron.append(picture);
+    //  jumbotron.append(text);
 });
-
-// var jumbotron = $("<div>");
-//  jumbotron.attr("class", "jumbotron text-center");
-//  var heading = $("<h1>");
-//  heading.text(data.name);
-//  var picture = $("<img>");
-//  picture.attr("src", data.picture);
-//  var text = $("<p>");
-//  text.text("This is your most compatible match.");
-//  jumbotron.append(heading);
-//  jumbotron.append(picture);
-//  jumbotron.append(text);
-});
-
-
 </script>
 
 </html>

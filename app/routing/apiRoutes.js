@@ -25,12 +25,12 @@ module.exports = function(app) {
     // ---------------------------------------------------------------------------
 
     app.post("/api/friends", function(req, res) {
-      if (friends.length <10) {
-        friends.push(req.body);
-        res.json({
-          message: "added successfully to tables"
-        })
-      }
+        if (friends.length < 10) {
+            friends.push(req.body);
+            res.json({
+                message: "added successfully to tables"
+            })
+        }
 
         //create a bestMatch Object
         var bestMatch = {
@@ -47,70 +47,43 @@ module.exports = function(app) {
 
         var totalDifference = 0;
 
-        for (var i = 0; i < friends.length; i++) {
+        var friendsSize = friends.length - 1;
+        
+
+        //loop through friends data array to get the friends scores
+        for (var i = 0; i < friendsSize; i++) {
             console.log("This is the Friends name: " + friends[i].name)
-
-            
-            console.log("THIS IS THE 1st FRIENDS SCORE: " + friends[i].scores)
-
+             totalDifference = 0;
+            //loop through friens score ant the user score and calculate abs difference, push the totalDifference
+           
             for (var j = 0; j < friends[i].scores[j]; j++) {
-              console.log("THIS IS THE FRIENDS SCORE: " + friends[i].scores[j]);
+                console.log("THIS IS THE FRIENDS SCORE: " + friends[i].scores[j]);
 
                 totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
 
                 // totalDifference = 0, userScore = 3
- 
+
                 console.log("THIS IS THE TOTAL DIFFERENCE: " + totalDifference)
 
-                if (totalDifference<= bestMatch.friendDifference) {
+                if (totalDifference <= bestMatch.variance) {
 
                     // Reset the bestMatch to be the new friend.
                     bestMatch.name = friends[i].name;
                     bestMatch.photo = friends[i].photo;
-                    bestMatch.friendDifference = totalDifference;
+                    bestMatch.variance = totalDifference;
                 }
 
 
             }
         }
 
-        console.log("=======================")
-            // console.log(res);
 
-
-        // function scoreParser(array) {
-        //  for (var i = 0; i < array.length - 1 ; i++) {
-        //    array[i]= parseInt(array[i]);
-        //     console.log("THIS IS FRIENDS NAME: " + array[i].name);
-
-
-
-
-
-        // scoreParser(userData.scores);
-        // console.log(userData);
-        console.log("=======================")
         console.log("=======================")
 
+        friends.push(userData);
+        console.log("=======================")
 
-
-        // var totalVariance = 0;
-
-        // for (var i = 0; i < userData.length; i++){
-        //  console.log("THIS IS FRIENDS NAME: " + userData[i].name);
-        // }
-
-        // assign id to the name 
-        // create an array of ids called userArray
-        //create scoreArray for each id
-        //push all results into an object
-        // loop through userarray and print scoresArray for each user
-        //
-        // req.body.scores and each instance of friendsData[i].scores
-
-
-        // 
-        friends.push(req.body);
+        res.json(bestMatch);
     });
 };
 // console.log(friendsData);
