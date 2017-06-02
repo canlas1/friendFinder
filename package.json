@@ -2,14 +2,24 @@
   "name": "friendfinder",
   "version": "1.0.0",
   "description": "friend finder howework",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Dennis Canlas",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canlas1/friendFinder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/canlas1/friendFinder/issues"
+  },
+  "homepage": "https://github.com/canlas1/friendFinder#readme"
 }
