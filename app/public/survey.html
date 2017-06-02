@@ -161,26 +161,10 @@ $(submit).on("click", function() {
 
     $.post(currentURL + "/api/friends", newUserData, function(data) {
         console.log("FJDKLADFJSLDJF", data)
-        // Grab the result from the AJAX post so that the best match's name and photo are displayed.
         $("#matchName").text(data.name);
         $('#matchImg').attr("src", data.photo);
-        // Show the modal with the best match 
         $("#resultsModal").modal('toggle');
     });
-
-    // console.log(name);
-    // console.log(photo);
-    // console.log(q1);
-    // console.log(q2);
-    // console.log(q3);
-    // console.log(q4);
-    // console.log(q5);
-    // console.log(q6);
-    // console.log(q7);
-    // console.log(q8);
-    // console.log(q9);
-    // console.log(q10);
-
 
     function scoreParser(array) {
         for (var i = 0; i < array.length; i++) {
@@ -201,8 +185,6 @@ $(submit).on("click", function() {
 
         $("#match-name").text(data.name);
         $("#match-img").attr("src", data.photo);
-
-        // Show the modal with the best match
         $("#results-modal").modal("toggle");
         console.log(data);
     });
